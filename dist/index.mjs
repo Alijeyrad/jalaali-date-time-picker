@@ -27,13 +27,13 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// lib/shamsi.ts
+// lib/jalaali.ts
 import jalaali from "jalaali-js";
-function toShamsi(date) {
+function toJalaali(date) {
   const { jy, jm, jd } = jalaali.toJalaali(date);
   return `${jy}/${jm.toString().padStart(2, "0")}/${jd.toString().padStart(2, "0")}`;
 }
-function fromShamsi(jy, jm, jd) {
+function fromJalaali(jy, jm, jd) {
   const { gy, gm, gd } = jalaali.toGregorian(jy, jm, jd);
   return new Date(gy, gm - 1, gd);
 }
@@ -65,7 +65,7 @@ var persianMonthNames = [
   "\u0627\u0633\u0641\u0646\u062F"
 ];
 
-// components/ShamsiDateTimePicker.tsx
+// components/JalaaliDateTimePicker.tsx
 import {
   useCallback,
   useEffect,
@@ -361,9 +361,9 @@ function SheetDescription(_a) {
   );
 }
 
-// components/ShamsiDateTimePicker.tsx
+// components/JalaaliDateTimePicker.tsx
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "lucide-react";
-var ShamsiDateTimePicker = forwardRef(
+var JalaaliDateTimePicker = forwardRef(
   ({
     className,
     defaultValue = /* @__PURE__ */ new Date(),
@@ -422,12 +422,12 @@ var ShamsiDateTimePicker = forwardRef(
       return {
         weeks: Array.from({ length: 6 }, (_, w) => all.slice(w * 7, w * 7 + 7)),
         daysFlat: all.map((d) => d != null ? d : -1),
-        canPrevMonth: fromShamsi(year, month, 1) > min,
-        canNextMonth: fromShamsi(year, month, dim) < max
+        canPrevMonth: fromJalaali(year, month, 1) > min,
+        canNextMonth: fromJalaali(year, month, dim) < max
       };
     }, [year, month, min, max]);
     const finalDate = useMemo(() => {
-      const d = fromShamsi(year, month, selectedDay);
+      const d = fromJalaali(year, month, selectedDay);
       d.setHours(showTime ? hour : 0);
       d.setMinutes(showTime ? minute : 0);
       return d;
@@ -442,7 +442,7 @@ var ShamsiDateTimePicker = forwardRef(
     }, [min, max]);
     const isDisabledDay = useCallback(
       (d) => {
-        const g = fromShamsi(year, month, d);
+        const g = fromJalaali(year, month, d);
         return g < min || g > max;
       },
       [year, month, min, max]
@@ -451,7 +451,7 @@ var ShamsiDateTimePicker = forwardRef(
       year: "numeric",
       month: "2-digit",
       day: "2-digit"
-    }) : toShamsi(d);
+    }) : toJalaali(d);
     const labelText = confirmedDate ? formatLabel ? formatLabel(confirmedDate) : formatBuiltIn(confirmedDate) : void 0;
     const moveSelection = useCallback(
       (delta) => {
@@ -516,7 +516,7 @@ var ShamsiDateTimePicker = forwardRef(
       {
         key: y,
         value: y.toString(),
-        disabled: fromShamsi(y, 12, 29) < min || fromShamsi(y, 1, 1) > max
+        disabled: fromJalaali(y, 12, 29) < min || fromJalaali(y, 1, 1) > max
       },
       y
     )))));
@@ -628,8 +628,8 @@ var ShamsiDateTimePicker = forwardRef(
     ));
   }
 );
-ShamsiDateTimePicker.displayName = "ShamsiDateTimePicker";
+JalaaliDateTimePicker.displayName = "JalaaliDateTimePicker";
 export {
-  ShamsiDateTimePicker
+  JalaaliDateTimePicker
 };
 //# sourceMappingURL=index.mjs.map

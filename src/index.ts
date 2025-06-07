@@ -1,7 +1,7 @@
-export { ShamsiDateTimePicker } from "../components/ShamsiDateTimePicker"
+export { JalaaliDateTimePicker } from "../components/JalaaliDateTimePicker"
 export type {
-	ShamsiDateTimePickerProps,
-	ShamsiDateTimePickerRef,
-} from "../components/ShamsiDateTimePicker"
+	JalaaliDateTimePickerProps,
+	JalaaliDateTimePickerRef,
+} from "../components/JalaaliDateTimePicker"
 
-export * from "../components/ShamsiDateTimePicker"
+export * from "../components/JalaaliDateTimePicker"

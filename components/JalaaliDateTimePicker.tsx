@@ -1,12 +1,12 @@
 "use client"
 
 import {
-	toShamsi,
-	fromShamsi,
+	toJalaali,
+	fromJalaali,
 	getFirstDayOfMonth,
 	getMonthDays,
 	getJalaliParts,
-} from "@/lib/shamsi"
+} from "@/lib/jalaali"
 import { persianMonthNames, persianWeekdaysShort } from "@/lib/locale-fa"
 import {
 	useCallback,
@@ -37,7 +37,7 @@ import {
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "lucide-react"
 
 /*───────────────────────────────────────────────────────────*/
-export interface ShamsiDateTimePickerProps {
+export interface JalaaliDateTimePickerProps {
 	className?: string
 	defaultValue?: Date
 	value?: Date
@@ -60,14 +60,14 @@ export interface ShamsiDateTimePickerProps {
 	placeholderLabel?: string
 }
 
-export interface ShamsiDateTimePickerRef {
+export interface JalaaliDateTimePickerRef {
 	getValue: () => Date | null
 }
 
 /*───────────────────────────────────────────────────────────*/
-export const ShamsiDateTimePicker = forwardRef<
-	ShamsiDateTimePickerRef,
-	ShamsiDateTimePickerProps
+export const JalaaliDateTimePicker = forwardRef<
+	JalaaliDateTimePickerRef,
+	JalaaliDateTimePickerProps
 >(
 	(
 		{
@@ -142,14 +142,14 @@ export const ShamsiDateTimePicker = forwardRef<
 			return {
 				weeks: Array.from({ length: 6 }, (_, w) => all.slice(w * 7, w * 7 + 7)),
 				daysFlat: all.map((d) => d ?? -1),
-				canPrevMonth: fromShamsi(year, month, 1) > min,
-				canNextMonth: fromShamsi(year, month, dim) < max,
+				canPrevMonth: fromJalaali(year, month, 1) > min,
+				canNextMonth: fromJalaali(year, month, dim) < max,
 			}
 		}, [year, month, min, max])
 
 		/* final value ---------------------------------------------------------- */
 		const finalDate = useMemo(() => {
-			const d = fromShamsi(year, month, selectedDay)
+			const d = fromJalaali(year, month, selectedDay)
 			d.setHours(showTime ? hour : 0)
 			d.setMinutes(showTime ? minute : 0)
 			return d
@@ -169,7 +169,7 @@ export const ShamsiDateTimePicker = forwardRef<
 
 		const isDisabledDay = useCallback(
 			(d: number) => {
-				const g = fromShamsi(year, month, d)
+				const g = fromJalaali(year, month, d)
 				return g < min || g > max
 			},
 			[year, month, min, max],
@@ -182,7 +182,7 @@ export const ShamsiDateTimePicker = forwardRef<
 						month: "2-digit",
 						day: "2-digit",
 					})
-				: toShamsi(d)
+				: toJalaali(d)
 
 		const labelText = confirmedDate
 			? formatLabel
@@ -282,7 +282,7 @@ export const ShamsiDateTimePicker = forwardRef<
 								key={y}
 								value={y.toString()}
 								disabled={
-									fromShamsi(y, 12, 29) < min || fromShamsi(y, 1, 1) > max
+									fromJalaali(y, 12, 29) < min || fromJalaali(y, 1, 1) > max
 								}
 							>
 								{y}
@@ -503,4 +503,4 @@ export const ShamsiDateTimePicker = forwardRef<
 	},
 )
 
-ShamsiDateTimePicker.displayName = "ShamsiDateTimePicker"
+JalaaliDateTimePicker.displayName = "JalaaliDateTimePicker"

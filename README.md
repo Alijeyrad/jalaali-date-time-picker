@@ -1,4 +1,4 @@
-# Shamsi Date-Time Picker 🗓️
+# Jalaali Date-Time Picker 🗓️
 
 Production-ready Jalali (Persian) date + time picker for **React / Next.js**.
 
@@ -11,7 +11,7 @@ Production-ready Jalali (Persian) date + time picker for **React / Next.js**.
 ## Installation
 
 ```bash
-pnpm add shamsi-calendar
+pnpm add jalaali-calendar
 ```
 
 ## Peer dependencies

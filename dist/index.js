@@ -56,17 +56,17 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var index_exports = {};
 __export(index_exports, {
-  ShamsiDateTimePicker: () => ShamsiDateTimePicker
+  JalaaliDateTimePicker: () => JalaaliDateTimePicker
 });
 module.exports = __toCommonJS(index_exports);
 
-// lib/shamsi.ts
+// lib/jalaali.ts
 var import_jalaali_js = __toESM(require("jalaali-js"));
-function toShamsi(date) {
+function toJalaali(date) {
   const { jy, jm, jd } = import_jalaali_js.default.toJalaali(date);
   return `${jy}/${jm.toString().padStart(2, "0")}/${jd.toString().padStart(2, "0")}`;
 }
-function fromShamsi(jy, jm, jd) {
+function fromJalaali(jy, jm, jd) {
   const { gy, gm, gd } = import_jalaali_js.default.toGregorian(jy, jm, jd);
   return new Date(gy, gm - 1, gd);
 }
@@ -98,7 +98,7 @@ var persianMonthNames = [
   "\u0627\u0633\u0641\u0646\u062F"
 ];
 
-// components/ShamsiDateTimePicker.tsx
+// components/JalaaliDateTimePicker.tsx
 var import_react = require("react");
 
 // lib/utils.ts
@@ -387,9 +387,9 @@ function SheetDescription(_a) {
   );
 }
 
-// components/ShamsiDateTimePicker.tsx
+// components/JalaaliDateTimePicker.tsx
 var import_lucide_react3 = require("lucide-react");
-var ShamsiDateTimePicker = (0, import_react.forwardRef)(
+var JalaaliDateTimePicker = (0, import_react.forwardRef)(
   ({
     className,
     defaultValue = /* @__PURE__ */ new Date(),
@@ -448,12 +448,12 @@ var ShamsiDateTimePicker = (0, import_react.forwardRef)(
       return {
         weeks: Array.from({ length: 6 }, (_, w) => all.slice(w * 7, w * 7 + 7)),
         daysFlat: all.map((d) => d != null ? d : -1),
-        canPrevMonth: fromShamsi(year, month, 1) > min,
-        canNextMonth: fromShamsi(year, month, dim) < max
+        canPrevMonth: fromJalaali(year, month, 1) > min,
+        canNextMonth: fromJalaali(year, month, dim) < max
       };
     }, [year, month, min, max]);
     const finalDate = (0, import_react.useMemo)(() => {
-      const d = fromShamsi(year, month, selectedDay);
+      const d = fromJalaali(year, month, selectedDay);
       d.setHours(showTime ? hour : 0);
       d.setMinutes(showTime ? minute : 0);
       return d;
@@ -468,7 +468,7 @@ var ShamsiDateTimePicker = (0, import_react.forwardRef)(
     }, [min, max]);
     const isDisabledDay = (0, import_react.useCallback)(
       (d) => {
-        const g = fromShamsi(year, month, d);
+        const g = fromJalaali(year, month, d);
         return g < min || g > max;
       },
       [year, month, min, max]
@@ -477,7 +477,7 @@ var ShamsiDateTimePicker = (0, import_react.forwardRef)(
       year: "numeric",
       month: "2-digit",
       day: "2-digit"
-    }) : toShamsi(d);
+    }) : toJalaali(d);
     const labelText = confirmedDate ? formatLabel ? formatLabel(confirmedDate) : formatBuiltIn(confirmedDate) : void 0;
     const moveSelection = (0, import_react.useCallback)(
       (delta) => {
@@ -542,7 +542,7 @@ var ShamsiDateTimePicker = (0, import_react.forwardRef)(
       {
         key: y,
         value: y.toString(),
-        disabled: fromShamsi(y, 12, 29) < min || fromShamsi(y, 1, 1) > max
+        disabled: fromJalaali(y, 12, 29) < min || fromJalaali(y, 1, 1) > max
       },
       y
     )))));
@@ -654,9 +654,9 @@ var ShamsiDateTimePicker = (0, import_react.forwardRef)(
     ));
   }
 );
-ShamsiDateTimePicker.displayName = "ShamsiDateTimePicker";
+JalaaliDateTimePicker.displayName = "JalaaliDateTimePicker";
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  ShamsiDateTimePicker
+  JalaaliDateTimePicker
 });
 //# sourceMappingURL=index.js.map

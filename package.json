@@ -1,5 +1,5 @@
 {
-	"name": "shamsi-calendar",
+	"name": "jalaali-calendar",
 	"version": "1",
 	"module": "dist/index.mjs",
 	"main": "dist/index.cjs",

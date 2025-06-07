@@ -2,7 +2,7 @@
 
 import Script from "next/script"
 import { useState } from "react"
-import { ShamsiDateTimePicker } from "@/components/ShamsiDateTimePicker"
+import { JalaaliDateTimePicker } from "@/components/JalaaliDateTimePicker"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -26,7 +26,7 @@ export default function Home() {
 	const structuredData = {
 		"@context": "https://schema.org",
 		"@type": "SoftwareApplication",
-		name: "Shamsi Date-Time Picker",
+		name: "Jalaali Date-Time Picker",
 		applicationCategory: "DeveloperApplication",
 		operatingSystem: "All",
 		programmingLanguage: "TypeScript",
@@ -54,13 +54,13 @@ export default function Home() {
 						<ModeToggle />
 					</div>
 					<h1 className="text-2xl font-bold text-center">
-						Shamsi&nbsp;Date-Time Picker Demo
+						Jalaali&nbsp;Date-Time Picker Demo
 					</h1>
 				</header>
 
 				{/* PICKER */}
 				<div className="flex justify-center">
-					<ShamsiDateTimePicker
+					<JalaaliDateTimePicker
 						value={selected ?? undefined}
 						onChange={setSelected}
 						showTime={showTime}

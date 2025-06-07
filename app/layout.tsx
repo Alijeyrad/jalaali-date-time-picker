@@ -11,15 +11,15 @@ const vazirmatn = Vazirmatn({
 
 export const metadata: Metadata = {
 	title: {
-		default: "Shamsi Date-Time Picker Demo",
-		template: "%s | Shamsi Date-Time Picker",
+		default: "Jalaali Date-Time Picker Demo",
+		template: "%s | Jalaali Date-Time Picker",
 	},
 	description:
 		"React component for selecting Jalali (Persian) or Gregorian dates & times – keyboard accessible, headless, Tailwind-ready.",
 	keywords: [
 		"Jalali calendar",
 		"Jalali date picker",
-		"Shamsi date picker",
+		"Jalaali date picker",
 		"Persian date picker",
 		"React time picker",
 		"React date picker",
@@ -30,23 +30,23 @@ export const metadata: Metadata = {
 	],
 	// ───────────────────────────── canonical / hreflang
 	alternates: {
-		canonical: "https://shamsi-calendar.dev/",
+		canonical: "https://jalaali-calendar.dev/",
 	},
 	// ───────────────────────────── social previews
 	openGraph: {
 		type: "website",
 		locale: "fa_IR",
-		url: "https://shamsi-calendar.dev/",
-		siteName: "Shamsi Date-Time Picker",
-		title: "Shamsi Date-Time Picker – کامپوننت انتخاب تاریخ و زمان شمسی",
+		url: "https://jalaali-calendar.dev/",
+		siteName: "Jalaali Date-Time Picker",
+		title: "Jalaali Date-Time Picker – کامپوننت انتخاب تاریخ و زمان شمسی",
 		description:
 			"کامپوننت ری‌اکت برای انتخاب تاریخ و زمان به صورت شمسی (جلالی) یا میلادی، با پشتیبانی از Tailwind و دسترسی‌پذیری کامل.",
 		images: [
 			{
-				url: "https://shamsi-calendar.dev/og.png",
+				url: "https://jalaali-calendar.dev/og.png",
 				width: 1200,
 				height: 630,
-				alt: "نمایی از کامپوننت Shamsi Date-Time Picker",
+				alt: "نمایی از کامپوننت Jalaali Date-Time Picker",
 			},
 		],
 	},
