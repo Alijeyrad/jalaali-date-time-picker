@@ -1,0 +1,5 @@
+ignoredBuiltDependencies:
+  - '@biomejs/biome'
+  - '@tailwindcss/oxide'
+  - esbuild
+  - sharp
