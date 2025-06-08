@@ -1,6 +1,13 @@
 import * as react from 'react';
 import { ReactNode } from 'react';
 
+interface InputFieldProps {
+    name: string;
+    value: string | number | boolean | Date | null;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur: () => void;
+    ref: (instance: HTMLInputElement | null) => void;
+}
 interface JalaaliDateTimePickerProps {
     className?: string;
     defaultValue?: Date;
@@ -22,10 +29,11 @@ interface JalaaliDateTimePickerProps {
     onClear?: (prev: Date | null) => void;
     inputRef?: React.RefObject<HTMLInputElement>;
     placeholderLabel?: string;
+    inputFieldProps?: InputFieldProps;
 }
 interface JalaaliDateTimePickerRef {
     getValue: () => Date | null;
 }
 declare const JalaaliDateTimePicker: react.ForwardRefExoticComponent<JalaaliDateTimePickerProps & react.RefAttributes<JalaaliDateTimePickerRef>>;
 
-export { JalaaliDateTimePicker, type JalaaliDateTimePickerProps, type JalaaliDateTimePickerRef };
+export { type InputFieldProps, JalaaliDateTimePicker, type JalaaliDateTimePickerProps, type JalaaliDateTimePickerRef };
