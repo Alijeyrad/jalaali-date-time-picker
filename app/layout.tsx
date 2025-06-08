@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 		apple: "/apple-touch-icon.png",
 		shortcut: "/favicon-192.png",
 	},
-	manifest: "/site.webmanifest",
+	manifest: "/jalaali-date-time-picker/site.webmanifest",
 	robots: {
 		index: true,
 		follow: true,
