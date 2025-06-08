@@ -2,7 +2,7 @@
 
 Production-ready Jalali (Persian) date + time picker for **React / Next.js**.
 
-[![npm version](https://img.shields.io/npm/v/jalaali-calendar.svg)](https://www.npmjs.com/package/jalaali-calendar)
+[![npm version](https://img.shields.io/npm/v/jalaali-date-time-picker.svg)](https://www.npmjs.com/package/jalaali-date-time-picker)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-%5E3.0-38b2ac?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![ShadCN](https://img.shields.io/badge/ShadCN-UI-purple?logo=react)](https://ui.shadcn.dev)
@@ -21,7 +21,7 @@ Production-ready Jalali (Persian) date + time picker for **React / Next.js**.
 ## Installation
 
 ```bash
-npm install jalaali-calendar
+npm install jalaali-date-time-picker
 ```
 
 ## Peer Dependencies
@@ -42,7 +42,7 @@ module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/jalaali-calendar/**/*.{js,ts,jsx,tsx}", // required
+    "./node_modules/jalaali-date-time-picker/**/*.{js,ts,jsx,tsx}", // required
   ],
 }
 ```
@@ -54,7 +54,7 @@ Or in your `app/globals.css` (or similar global style file), add:
 @tailwind components;
 @tailwind utilities;
 
-@source "../../node_modules/jalaali-calendar/**/*.{js,ts,jsx,tsx}";
+@source "../../node_modules/jalaali-date-time-picker/**/*.{js,ts,jsx,tsx}";
 ```
 
 ## RTL Support
@@ -68,7 +68,7 @@ To render correctly, the parent document must be in RTL mode:
 ## Usage
 
 ```tsx
-import { JalaaliDateTimePicker } from "jalaali-calendar";
+import { JalaaliDateTimePicker } from "jalaali-date-time-picker";
 
 export default function Page() {
   return (
