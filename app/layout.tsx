@@ -12,9 +12,6 @@ const vazirmatn = Vazirmatn({
 })
 
 export const metadata: Metadata = {
-	metadataBase: new URL(
-		"https://alijeyrad.github.io/jalaali-date-time-picker/",
-	),
 	title: {
 		default: "Jalaali Date-Time Picker Demo",
 		template: "%s | Jalaali Date-Time Picker",
@@ -57,11 +54,11 @@ export const metadata: Metadata = {
 	},
 	// ───────────────────────────── icons / manifest
 	icons: {
-		icon: "/jalaali-date-time-picker/favicon.ico",
-		apple: "/jalaali-date-time-picker/apple-touch-icon.png",
-		shortcut: "/jalaali-date-time-picker/favicon-192.png",
+		icon: "/favicon.ico",
+		apple: "/apple-touch-icon.png",
+		shortcut: "/favicon-192.png",
 	},
-	manifest: "/jalaali-date-time-picker/site.webmanifest",
+	manifest: "/site.webmanifest",
 	robots: {
 		index: true,
 		follow: true,

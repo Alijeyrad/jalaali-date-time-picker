@@ -1,13 +1,13 @@
 {
 	"name": "Jalaali Date-Time Picker",
 	"short_name": "Jalaali Picker",
-	"start_url": "/",
+	"start_url": "/jalaali-date-time-picker/",
 	"display": "standalone",
 	"background_color": "#ffffff",
 	"theme_color": "#ffffff",
 	"icons": [
 		{
-			"src": "/favicon-192.png",
+			"src": "favicon-192.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		}
