@@ -102,7 +102,7 @@ export default function DocsPage() {
 				{/* ---- header ---- */}
 				<header className="mb-12 flex flex-col items-center gap-4 text-center">
 					<h1 className="text-3xl font-bold tracking-tight">
-						Jalaali&nbsp;Date-Time&nbsp;Picker&nbsp;🗓️
+						Jalaali&nbsp;Date-Time&nbsp;Picker
 					</h1>
 					<p className="max-w-lg text-balance text-muted-foreground">
 						Production-ready Jalali (Persian){" "}
@@ -115,6 +115,17 @@ export default function DocsPage() {
 						<Badge variant="secondary">Tailwind + ShadCN</Badge>
 						<Badge variant="secondary">Keyboard nav</Badge>
 					</div>
+
+					<a
+						href="https://www.npmjs.com/package/jalaali-date-time-picker"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img
+							src="https://img.shields.io/npm/v/jalaali-date-time-picker.svg"
+							alt="npm version"
+						/>
+					</a>
 				</header>
 
 				<Card>

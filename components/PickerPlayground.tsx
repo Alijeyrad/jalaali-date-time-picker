@@ -16,28 +16,37 @@ import { JalaaliDateTimePicker } from "@/components/JalaaliDateTimePicker"
 /* ---------- ❶ simple controlled picker -------------------------------- */
 function ControlledExample() {
 	const [value, setValue] = useState<Date | null>(null)
+	const [showTime, setShowTime] = useState(true)
+	const [clearable, setClearable] = useState(true)
+	const [disablePast, setDisablePast] = useState(false)
+	const [disableFuture, setDisableFuture] = useState(false)
+	const [format, setFormat] = useState<"jalali" | "gregorian">("jalali")
+	const [minuteStep, setMinuteStep] = useState(5)
 
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle>Controlled (+ all toggles)</CardTitle>
+				<CardTitle>Controlled</CardTitle>
 				<CardDescription>
-					All features exposed via local state controls.
+					All features exposed via local state controls and interactive toggles.
 				</CardDescription>
 			</CardHeader>
-			<CardContent className="space-y-4">
+
+			<CardContent className="space-y-4" dir="rtl">
 				<JalaaliDateTimePicker
+					inline
 					value={value ?? undefined}
 					onChange={setValue}
 					onOpenChange={(o) => console.info("open:", o)}
 					onClear={(prev) => console.info("cleared value was:", prev)}
-					showTime
-					clearable
-					minuteStep={5}
-					disablePast
+					showTime={showTime}
+					clearable={clearable}
+					disablePast={disablePast}
+					disableFuture={disableFuture}
 					placeholderLabel="انتخاب تاریخ جلسه"
+					format={format}
+					minuteStep={minuteStep}
 					formatLabel={(d) =>
-						// custom nicely-formatted label
 						new Intl.DateTimeFormat("fa-IR", {
 							dateStyle: "full",
 							timeStyle: "short",
@@ -48,6 +57,66 @@ function ControlledExample() {
 				<pre className="rounded bg-muted p-3 text-xs">
 					{value ? `ISO ⇒ ${value.toISOString()}` : "no selection yet"}
 				</pre>
+
+				{/* Feature toggles */}
+				<div className="flex flex-wrap gap-4 items-center text-sm">
+					<label className="flex items-center gap-1">
+						<input
+							type="checkbox"
+							checked={showTime}
+							onChange={() => setShowTime(!showTime)}
+						/>
+						<span>showTime</span>
+					</label>
+					<label className="flex items-center gap-1">
+						<input
+							type="checkbox"
+							checked={clearable}
+							onChange={() => setClearable(!clearable)}
+						/>
+						<span>clearable</span>
+					</label>
+					<label className="flex items-center gap-1">
+						<input
+							type="checkbox"
+							checked={disableFuture}
+							onChange={() => setDisableFuture(!disableFuture)}
+						/>
+						<span>disableFuture</span>
+					</label>
+					<label className="flex items-center gap-1">
+						<input
+							type="checkbox"
+							checked={disablePast}
+							onChange={() => setDisablePast(!disablePast)}
+						/>
+						<span>disablePast</span>
+					</label>
+					<label className="flex items-center gap-1">
+						<span>format:</span>
+						<select
+							value={format}
+							onChange={(e) =>
+								setFormat(e.target.value as "jalali" | "gregorian")
+							}
+							className="border rounded px-1 py-0.5"
+						>
+							<option value="jalali">jalali</option>
+							<option value="gregorian">gregorian</option>
+						</select>
+					</label>
+					<label className="flex items-center gap-1">
+						<span>minuteStep:</span>
+						<input
+							type="number"
+							value={minuteStep}
+							min={1}
+							max={30}
+							onChange={(e) => setMinuteStep(Number(e.target.value))}
+							className="w-16 border rounded px-1 py-0.5"
+						/>
+					</label>
+				</div>
 			</CardContent>
 		</Card>
 	)
@@ -63,12 +132,12 @@ function ConstraintExample() {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle>Min / Max (Gregorian, inline)</CardTitle>
+				<CardTitle>Min / Max</CardTitle>
 				<CardDescription>
 					Only a 7-day window is selectable – inline mode.
 				</CardDescription>
 			</CardHeader>
-			<CardContent>
+			<CardContent dir="rtl">
 				<JalaaliDateTimePicker
 					defaultValue={tomorrow}
 					minDate={tomorrow}
@@ -114,8 +183,16 @@ function RHFExample() {
 			<CardHeader>
 				<CardTitle>React-Hook-Form integration</CardTitle>
 				<CardDescription>
-					The picker provides a hidden&nbsp;<code>&lt;input/&gt;</code> that RHF
-					controls via&nbsp;<code>Controller</code>.
+					This picker exposes a hidden <code>&lt;input /&gt;</code> element with
+					full control support, making it seamlessly compatible with popular
+					form libraries like <strong>React Hook Form</strong>,{" "}
+					<strong>Formik</strong>, or any system expecting a traditional form
+					input. You can pass <code>name</code>, <code>value</code>,{" "}
+					<code>onChange</code>, and <code>onBlur</code> through the{" "}
+					<code>inputFieldProps</code> prop to integrate with any form
+					controller. Internally, it updates the hidden input's value in ISO
+					8601 format, ensuring it works with validation, submission, and data
+					binding workflows.
 				</CardDescription>
 			</CardHeader>
 
