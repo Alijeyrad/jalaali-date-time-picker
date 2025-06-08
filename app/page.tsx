@@ -22,7 +22,7 @@ export default function Home() {
 	const [selected, setSelected] = useState<Date | null>(null)
 
 	return (
-		<section className="container mx-auto px-4 py-10 space-y-8">
+		<section className="container mx-auto max-w-md px-4 py-12 lg:px-0 space-y-8">
 			<h1 className="text-2xl font-bold text-center">
 				Jalaali&nbsp;Date-Time&nbsp;Picker Demo
 			</h1>
