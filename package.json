@@ -5,6 +5,7 @@
 	"main": "dist/index.cjs",
 	"types": "dist/index.d.ts",
 	"sideEffects": false,
+	"files": ["dist"],
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"build:site": "next build",

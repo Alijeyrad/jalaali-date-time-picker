@@ -2,10 +2,18 @@ import { defineConfig } from "tsup"
 
 export default defineConfig({
 	entry: ["src/index.ts"],
-	dts: true,
-	sourcemap: true,
 	format: ["esm", "cjs"],
-	outDir: "dist",
-	external: ["react", "react-dom", "next", "lucide-react", "tailwindcss"],
+	dts: true,
+	tsconfig: "./tsconfig.build.json",
+	sourcemap: true,
+	treeshake: true,
 	clean: true,
+	splitting: false,
+	outDir: "dist",
+	minify: true,
+	target: "es2017",
+	external: ["react", "react-dom", "next", "lucide-react"],
+	esbuildOptions(options) {
+		options.jsx = "automatic"
+	},
 })
