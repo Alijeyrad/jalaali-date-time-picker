@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next"
 import { Vazirmatn } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
+import { SiteHeader } from "@/components/site-header"
+import Link from "next/link"
 
 const vazirmatn = Vazirmatn({
 	subsets: ["arabic"],
@@ -30,20 +32,20 @@ export const metadata: Metadata = {
 	],
 	// ───────────────────────────── canonical / hreflang
 	alternates: {
-		canonical: "https://jalaali-calendar.dev/",
+		canonical: "https://alijeyrad.github.io/jalaali-date-time-picker/",
 	},
 	// ───────────────────────────── social previews
 	openGraph: {
 		type: "website",
 		locale: "fa_IR",
-		url: "https://jalaali-calendar.dev/",
+		url: "https://alijeyrad.github.io/jalaali-date-time-picker/",
 		siteName: "Jalaali Date-Time Picker",
 		title: "Jalaali Date-Time Picker – کامپوننت انتخاب تاریخ و زمان شمسی",
 		description:
 			"کامپوننت ری‌اکت برای انتخاب تاریخ و زمان به صورت شمسی (جلالی) یا میلادی، با پشتیبانی از Tailwind و دسترسی‌پذیری کامل.",
 		images: [
 			{
-				url: "https://jalaali-calendar.dev/og.png",
+				url: "https://alijeyrad.github.io/jalaali-date-time-picker/og.png",
 				width: 1200,
 				height: 630,
 				alt: "نمایی از کامپوننت Jalaali Date-Time Picker",
@@ -57,6 +59,14 @@ export const metadata: Metadata = {
 		shortcut: "/favicon-192.png",
 	},
 	manifest: "/site.webmanifest",
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+		},
+	},
 }
 
 export const viewport: Viewport = {
@@ -79,14 +89,19 @@ export default function RootLayout({
 			className={vazirmatn.variable}
 			suppressHydrationWarning
 		>
-			<body className="antialiased bg-background text-foreground">
+			<body className="flex min-h-screen flex-col antialiased bg-background text-foreground font-sans">
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
 					enableSystem
 					disableTransitionOnChange
 				>
-					{children}
+					<SiteHeader />
+					<main className="flex-1">{children}</main>
+					<footer className="border-t py-4 text-center text-xs text-muted-foreground">
+						© {new Date().getFullYear()}{" "}
+						<Link href={"https://github.com/Alijeyrad"}>Ali Julaee Rad</Link>
+					</footer>
 				</ThemeProvider>
 			</body>
 		</html>
