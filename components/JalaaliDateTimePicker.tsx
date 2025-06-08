@@ -16,6 +16,7 @@ import {
 	forwardRef,
 	useImperativeHandle,
 	type ReactNode,
+	useRef,
 } from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -37,6 +38,14 @@ import {
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "lucide-react"
 
 /*───────────────────────────────────────────────────────────*/
+export interface InputFieldProps {
+	name: string
+	value: string | number | boolean | Date | null
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+	onBlur: () => void
+	ref: (instance: HTMLInputElement | null) => void
+}
+
 export interface JalaaliDateTimePickerProps {
 	className?: string
 	defaultValue?: Date
@@ -58,6 +67,7 @@ export interface JalaaliDateTimePickerProps {
 	onClear?: (prev: Date | null) => void
 	inputRef?: React.RefObject<HTMLInputElement>
 	placeholderLabel?: string
+	inputFieldProps?: InputFieldProps
 }
 
 export interface JalaaliDateTimePickerRef {
@@ -91,6 +101,7 @@ export const JalaaliDateTimePicker = forwardRef<
 			onClear,
 			inputRef,
 			placeholderLabel,
+			inputFieldProps,
 		},
 		ref,
 	) => {
@@ -160,6 +171,20 @@ export const JalaaliDateTimePicker = forwardRef<
 			confirmedDate,
 		])
 
+		/* helpers for form libs --------------------------------------------- */
+		const emitChange = (iso: string) => {
+			if (inputFieldProps?.onChange) {
+				inputFieldProps.onChange({
+					target: { name: inputFieldProps.name, value: iso },
+				} as any) // satisfies React.ChangeEvent<HTMLInputElement>
+			}
+		}
+		const emitBlur = () => inputFieldProps?.onBlur?.()
+
+		useEffect(() => {
+			emitChange(confirmedDate ? confirmedDate.toISOString() : "")
+		}, [confirmedDate])
+
 		/* utils ---------------------------------------------------------------- */
 		const yearOptions = useMemo(() => {
 			const minJ = getJalaliParts(min).jy
@@ -212,6 +237,7 @@ export const JalaaliDateTimePicker = forwardRef<
 			}
 			setError(null)
 			setConfirmedDate(finalDate)
+			emitChange(finalDate.toISOString())
 			if (!inline) setOpen(false)
 			onChange?.(finalDate)
 			inputRef?.current?.setAttribute("value", finalDate.toISOString())
@@ -221,6 +247,7 @@ export const JalaaliDateTimePicker = forwardRef<
 		const clearSelection = useCallback(() => {
 			onClear?.(confirmedDate)
 			setConfirmedDate(null)
+			emitChange("")
 			inputRef?.current?.setAttribute("value", "")
 		}, [onClear, confirmedDate, inputRef])
 
@@ -232,6 +259,17 @@ export const JalaaliDateTimePicker = forwardRef<
 			setHour(d.getHours())
 			setMinute(d.getMinutes())
 		}, [])
+
+		/* hidden input ------------------------------------------------------- */
+		const hiddenInputRef = useRef<HTMLInputElement | null>(null)
+		const HiddenField = (
+			<input
+				type="hidden"
+				{...(inputFieldProps ?? {})}
+				ref={inputFieldProps?.ref ? inputFieldProps.ref : hiddenInputRef}
+				value={confirmedDate ? confirmedDate.toISOString() : ""}
+			/>
+		)
 
 		/* --- UI parts --------------------------------------------------------- */
 		const TopControls = (
@@ -425,20 +463,25 @@ export const JalaaliDateTimePicker = forwardRef<
 		/* inline --------------------------------------------------------------- */
 		if (inline) {
 			return (
-				<div
-					className={cn(
-						"p-4 space-y-4 border rounded-lg bg-background max-w-md mx-auto",
-						className,
-					)}
-				>
-					{TopControls}
-					{CalendarTable}
-					{TimeSelectors}
-					{Actions}
-					{error && (
-						<p className="text-sm text-destructive text-center mt-2">{error}</p>
-					)}
-				</div>
+				<>
+					{HiddenField}
+					<div
+						className={cn(
+							"p-4 space-y-4 border rounded-lg bg-background max-w-md mx-auto",
+							className,
+						)}
+					>
+						{TopControls}
+						{CalendarTable}
+						{TimeSelectors}
+						{Actions}
+						{error && (
+							<p className="text-sm text-destructive text-center mt-2">
+								{error}
+							</p>
+						)}
+					</div>
+				</>
 			)
 		}
 
@@ -451,54 +494,57 @@ export const JalaaliDateTimePicker = forwardRef<
 		}
 
 		return (
-			<Sheet open={open} onOpenChange={handleOpenChange}>
-				<SheetTrigger asChild className="w-fit">
-					{trigger ?? (
-						<Button variant="outline" disabled={disabled}>
-							{confirmedDate ? (
-								<span className="text-sm text-muted-foreground">
-									{showTime
-										? `${hour.toString().padStart(2, "0")}:${minute
-												.toString()
-												.padStart(2, "0")} - `
-										: ""}
-									{labelText}
-								</span>
-							) : (
-								placeholder
-							)}
-						</Button>
-					)}
-				</SheetTrigger>
-
-				<SheetContent
-					side="bottom"
-					className={cn("max-w-md mx-auto", className)}
-				>
-					<SheetHeader className="text-center">
-						<SheetTitle>
-							{showTime ? "انتخاب تاریخ و زمان" : "انتخاب تاریخ"}
-						</SheetTitle>
-						<SheetDescription>
-							{showTime
-								? "تاریخ و زمان را انتخاب کنید"
-								: "تاریخ را انتخاب کنید"}
-						</SheetDescription>
-					</SheetHeader>
-
-					<div className="p-4 space-y-4">
-						{TopControls}
-						{CalendarTable}
-						{TimeSelectors}
-						{Actions}
-						{error && (
-							<p className="text-sm text-destructive text-center mt-2">
-								{error}
-							</p>
+			<>
+				{HiddenField}
+				<Sheet open={open} onOpenChange={handleOpenChange}>
+					<SheetTrigger asChild className="w-fit">
+						{trigger ?? (
+							<Button variant="outline" disabled={disabled}>
+								{confirmedDate ? (
+									<span className="text-sm text-muted-foreground">
+										{showTime
+											? `${hour.toString().padStart(2, "0")}:${minute
+													.toString()
+													.padStart(2, "0")} - `
+											: ""}
+										{labelText}
+									</span>
+								) : (
+									placeholder
+								)}
+							</Button>
 						)}
-					</div>
-				</SheetContent>
-			</Sheet>
+					</SheetTrigger>
+
+					<SheetContent
+						side="bottom"
+						className={cn("max-w-md mx-auto", className)}
+					>
+						<SheetHeader className="text-center">
+							<SheetTitle>
+								{showTime ? "انتخاب تاریخ و زمان" : "انتخاب تاریخ"}
+							</SheetTitle>
+							<SheetDescription>
+								{showTime
+									? "تاریخ و زمان را انتخاب کنید"
+									: "تاریخ را انتخاب کنید"}
+							</SheetDescription>
+						</SheetHeader>
+
+						<div className="p-4 space-y-4">
+							{TopControls}
+							{CalendarTable}
+							{TimeSelectors}
+							{Actions}
+							{error && (
+								<p className="text-sm text-destructive text-center mt-2">
+									{error}
+								</p>
+							)}
+						</div>
+					</SheetContent>
+				</Sheet>
+			</>
 		)
 	},
 )
