@@ -7,7 +7,7 @@ Production-ready Jalali (Persian) date + time picker for **React / Next.js**.
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-%5E3.0-38b2ac?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![ShadCN](https://img.shields.io/badge/ShadCN-UI-purple?logo=react)](https://ui.shadcn.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%5E5.0-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-
+[![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
 ---
 
 - Fully typed
@@ -82,6 +82,12 @@ export default function Page() {
 ## Interactive Example
 
 See the full interactive demo [here](https://alijeyrad.github.io/jalaali-date-time-picker/).
+
+---
+
+## Goal
+
+The long-term goal of this package is to make it as lightweight and dependency-free as possible, reducing external reliance without compromising functionality or designI'm starting with icon rendering as the first optimization.
 
 ---
 
