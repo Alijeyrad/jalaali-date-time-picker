@@ -57,11 +57,11 @@ export const metadata: Metadata = {
 	},
 	// ───────────────────────────── icons / manifest
 	icons: {
-		icon: "/favicon.ico",
-		apple: "/apple-touch-icon.png",
-		shortcut: "/favicon-192.png",
+		icon: "/jalaali-date-time-picker/favicon.ico",
+		apple: "/jalaali-date-time-picker/apple-touch-icon.png",
+		shortcut: "/jalaali-date-time-picker/favicon-192.png",
 	},
-	manifest: "/site.webmanifest",
+	manifest: "/jalaali-date-time-picker/site.webmanifest",
 	robots: {
 		index: true,
 		follow: true,
