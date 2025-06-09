@@ -2,14 +2,6 @@
 
 Production-ready Jalali (Persian) date + time picker for **React / Next.js**.
 
-[![npm version](https://img.shields.io/npm/v/jalaali-date-time-picker.svg)](https://www.npmjs.com/package/jalaali-date-time-picker)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-%5E3.0-38b2ac?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![ShadCN](https://img.shields.io/badge/ShadCN-UI-purple?logo=react)](https://ui.shadcn.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-%5E5.0-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Checked with Biome](https://img.shields.io/badge/Checked_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
----
-
 - Fully typed
 - Tree-shakable ESM build
 - Built on Tailwind + ShadCN
@@ -82,6 +74,35 @@ export default function Page() {
 ## Interactive Example
 
 See the full interactive demo [here](https://alijeyrad.github.io/jalaali-date-time-picker/).
+
+---
+
+## Props
+
+| Prop             | Type                                              | Default            | Description |
+|------------------|---------------------------------------------------|--------------------|-------------|
+| `className`      | `string`                                          | `""`               | Optional Tailwind class |
+| `defaultValue`   | `Date`                                            | `new Date()`       | Default initial date |
+| `value`          | `Date`                                            | `undefined`        | Controlled value |
+| `minDate`        | `Date`                                            | `1970-01-01`       | Minimum date allowed |
+| `maxDate`        | `Date`                                            | `2100-12-31`       | Maximum date allowed |
+| `disablePast`    | `boolean`                                         | `false`            | Disallow past dates |
+| `disableFuture`  | `boolean`                                         | `false`            | Disallow future dates |
+| `minuteStep`     | `number`                                          | `1`                | Step for minute selection |
+| `disabled`       | `boolean`                                         | `false`            | Disable the picker |
+| `showTime`       | `boolean`                                         | `true`             | Show time picker |
+| `format`         | `"jalali" \| "gregorian"`                        | `"jalali"`         | Date format to display |
+| `clearable`      | `boolean`                                         | `false`            | Show "clear" button |
+| `inline`         | `boolean`                                         | `false`            | Render in-place instead of a modal |
+| `trigger`        | `ReactNode`                                       | `undefined`        | Custom trigger component |
+| `formatLabel`    | `(date: Date) => string`                          | `undefined`        | Custom display label formatter |
+| `onChange`       | `(date: Date) => void`                            | `undefined`        | Callback when value changes |
+| `onOpenChange`   | `(open: boolean) => void`                         | `undefined`        | Callback when modal opens/closes |
+| `onClear`        | `(prev: Date \| null) => void`                   | `undefined`        | Callback when cleared |
+| `inputRef`       | `React.RefObject<HTMLInputElement>`              | `undefined`        | Ref to hidden input |
+| `placeholderLabel` | `string`                                        | `"انتخاب تاریخ و زمان"` | Placeholder |
+| `inputFieldProps` | `InputFieldProps`                                | `undefined`        | Pass props from RHF, Formik, etc. |
+
 
 ---
 

@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { ExternalLink } from "lucide-react"
 import type { Metadata } from "next"
+import PropsTable from "@/components/propsTable"
 
 export const metadata: Metadata = {
 	title: "مستندات Jalaali Date-Time Picker",
@@ -199,6 +200,8 @@ export default function Example() {
 								Live Demo ↗
 							</Link>
 						</Button>
+
+						<PropsTable />
 
 						<Separator />
 						<SubTitle>Project&nbsp;Goals</SubTitle>
