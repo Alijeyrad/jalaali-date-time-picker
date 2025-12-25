@@ -12,7 +12,7 @@ export default defineConfig({
 	outDir: "dist",
 	minify: true,
 	target: "es2017",
-	external: ["react", "react-dom", "next", "lucide-react"],
+	external: ["react", "react-dom", "next"],
 	esbuildOptions(options) {
 		options.jsx = "automatic"
 	},
