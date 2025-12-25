@@ -35,7 +35,7 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@/components/ui/sheet"
-import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "lucide-react"
+import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown } from "@/lib/icons"
 
 /*───────────────────────────────────────────────────────────*/
 export interface InputFieldProps {
