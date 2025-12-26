@@ -141,7 +141,7 @@ export default function DocsPage() {
 							<code className="font-mono">
 								npm install jalaali-date-time-picker
 								{"\n"}
-								npm install react next tailwindcss lucide-react
+								npm install react react-dom tailwindcss
 							</code>
 						</pre>
 
@@ -158,15 +158,11 @@ module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/jalaali-date-time-picker/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/jalaali-date-time-picker/dist/**/*.{js,mjs}",
   ],
 };`}
 							</code>
 						</pre>
-						<p className="text-sm text-muted-foreground">
-							If using <InlineCode>globals.css</InlineCode> – also{" "}
-							<InlineCode>@source</InlineCode> that path.
-						</p>
 
 						<Separator />
 						<SubTitle>RTL support</SubTitle>
@@ -205,8 +201,11 @@ export default function Example() {
 
 						<Separator />
 						<SubTitle>Project&nbsp;Goals</SubTitle>
-						<ul className="list-disc pl-5 leading-relaxed">
-							<li>Remove external deps one-by-one (starting with icons).</li>
+						<p className="mb-3">
+							Make the package as lightweight and dependency-free as possible.
+						</p>
+						<ul className="list-disc pl-5 leading-relaxed space-y-1">
+							<li>✅ Icons optimized – removed <InlineCode>lucide-react</InlineCode> dependency</li>
 							<li>Add headless base for custom theming.</li>
 							<li>Support accessibility & language switching.</li>
 						</ul>
