@@ -20,34 +20,25 @@ npm install jalaali-date-time-picker
 
 Ensure the following packages are installed in your project:
 
-- [`next`](https://nextjs.org/)
-- [`shadcn`](https://ui.shadcn.com/docs)
-- [`tailwindcss`](https://tailwindcss.com/)
-- [`lucide-react`](https://lucide.dev/guide/packages/lucide-react)
+- [`react`](https://react.dev/) (version 18 or higher)
+- [`react-dom`](https://react.dev/) (version 18 or higher)
+- [`tailwindcss`](https://tailwindcss.com/) (version 3 or higher)
 
 ## Tailwind Configuration
 
-You **must** include this path in your `tailwind.config.js`:
+You **must** include this path in your `tailwind.config.js` (or `tailwind.config.ts`):
 
 ```js
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/jalaali-date-time-picker/**/*.{js,ts,jsx,tsx}", // required
+    "./node_modules/jalaali-date-time-picker/dist/**/*.{js,mjs}", // required
   ],
 }
 ```
 
-Or in your `app/globals.css` (or similar global style file), add:
-
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@source "../../node_modules/jalaali-date-time-picker/**/*.{js,ts,jsx,tsx}";
-```
+This ensures Tailwind can process the component styles properly.
 
 ## RTL Support
 
@@ -106,9 +97,21 @@ See the full interactive demo [here](https://alijeyrad.github.io/jalaali-date-ti
 
 ---
 
+## Dependencies
+
+This package uses the following runtime dependencies:
+
+- **[jalaali-js](https://www.npmjs.com/package/jalaali-js)** - Jalali calendar conversion utilities
+- **[@radix-ui](https://www.radix-ui.com/)** components - Headless UI primitives (dialog, select, separator, slot)
+
+All icons are custom SVG implementations (no external icon library required).
+
 ## Goal
 
-The long-term goal of this package is to make it as lightweight and dependency-free as possible, reducing external reliance without compromising functionality or designI'm starting with icon rendering as the first optimization.
+The long-term goal of this package is to make it as lightweight and dependency-free as possible, reducing external reliance without compromising functionality or design.
+
+**Recent optimizations:**
+- ✅ **Icon rendering** - Replaced `lucide-react` with custom SVG icons, eliminating the dependency entirely
 
 ---
 
